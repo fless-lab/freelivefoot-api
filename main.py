@@ -8,14 +8,14 @@ app = FastAPI()
 
 # with open("matches.json") as m:
 #     temp = json.load(m)
+temp =  fetchData()
 
+data = getOnlyFoot(temp)
 #data_length = len(data)
 
 
 @app.get("/")
 def index(page:int=1,size:int=1000): #Apres je remet ça à 10 afin de proceder à la pagination coté mobile
-    temp =  fetchData()
-    data = getOnlyFoot(temp)
     start = (page-1)*size
     end = start+size
     return data[start:end]
