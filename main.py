@@ -21,15 +21,7 @@ data = getOnlyFoot(temp)
 #data_length = len(data)
 
 @app.get("/")
-async def index():
-    return {
-        "name": "freelivefoot",
-        "host": hostname,
-        "version": f"Bonjour ! Avec FastAPI executant sur Uvicorn. Utilisant Python {version}"
-    }
-
-@app.get("/matches")
-def get_matches(page:int=1,size:int=1000): #Apres je remet ça à 10 afin de proceder à la pagination coté mobile
+def index(page:int=1,size:int=1000): #Apres je remet ça à 10 afin de proceder à la pagination coté mobile
     start = (page-1)*size
     end = start+size
     return data[start:end]
@@ -42,3 +34,11 @@ def live_link(link:str):
     if isValidUrl(url) : 
         return url
     raise HTTPException(status_code=400,detail="Source non valide.")
+
+@app.get("/infos")
+async def info():
+    return {
+        "name": "freelivefoot",
+        "host": hostname,
+        "version": f"Bonjour ! Avec FastAPI executant sur Uvicorn. Utilisant Python {version}"
+    }
