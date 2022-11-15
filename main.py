@@ -38,6 +38,7 @@ def live_link(link:str=Body(...)):
 @app.get("/infos")
 async def info():
     return {
+        "author":"Abdou-Raouf ATARMLA",
         "name": "freelivefoot",
         "host": hostname,
         "version": f"Bonjour ! Avec FastAPI executant sur Uvicorn. Utilisant Python {version}"
