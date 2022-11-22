@@ -74,4 +74,12 @@ def getIframeLink(link):
     return iframe_src
 
 def getOnlyFoot(matches):
-   return [elt for elt in matches if elt["type"]=="Football"];
+   return [elt for elt in matches if elt["type"]=="Football"]
+
+def getOnlyWorldCupMatches(matches):
+    return [match for match in matches if "World Cup" in match["competition"]]
+
+def filterByLanguage(matches,lang):
+    for match in matches:
+        match["links"]=[link for link in match["links"] if link["Lang"]==lang]
+    return matches
